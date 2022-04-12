@@ -1,11 +1,33 @@
 <hello name="{{ name }}"></hello>
+<!-- Default Pipes in angular-->
 <p>The hero's birthday is {{ birthday | date }}</p>
 {{ birthday | date: 'MM/dd/yy' }}
 {{ birthday | date | uppercase }}
 
-New hero:   
-<input type="text" #box 
-    (keyup.enter)="addHero(box.value); box.value=''"
-    placeholder="hero name">
-<button (click)="reset()">Reset</button>
-<div *ngFor="let hero of heroes">{{hero.name}}</div>
+New hero:
+<input
+  type="text"
+  #box
+  (keyup.enter)="addHero(box.value); box.value = ''"
+  placeholder="hero name"
+/>
+<!-- dynamic class added to [class.selected]="true"-->
+<button (click)="reset()" [class.selected]="true">Reset</button>
+<div *ngFor="let hero of heroes">{{ hero.name }}</div>
+
+<!--  pipe filter added flyingHeroes-->
+<h4 [ngClass]="currentClasses" [ngStyle]="currentStyles">
+  Heroes who fly (piped)
+</h4>
+<div id="flyers">
+  <div *ngFor="let hero of heroes | flyingHeroes">
+    {{ hero.name }}
+    <!--   {{ hero | field: col }} -->
+  </div>
+</div>
+<h4 [ngStyle]="currentStyles">All Heroes (no pipe)</h4>
+<div id="all">
+  <div *ngFor="let hero of heroes">
+    {{ hero.name }}
+  </div>
+</div>
