@@ -1,4 +1,11 @@
 <hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<p>The hero's birthday is {{ birthday | date }}</p>
+{{ birthday | date: 'MM/dd/yy' }}
+{{ birthday | date | uppercase }}
+
+New hero:   
+<input type="text" #box 
+    (keyup.enter)="addHero(box.value); box.value=''"
+    placeholder="hero name">
+<button (click)="reset()">Reset</button>
+<div *ngFor="let hero of heroes">{{hero.name}}</div>
